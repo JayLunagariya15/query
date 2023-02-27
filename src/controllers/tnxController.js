@@ -13,6 +13,7 @@ const inTnx = async(req,res)=>{
             to:to,
             price:price
         });
+        console.log(tnxOne);
         res.status(200).json(tnxOne)
     }catch(err){
         res.status(400).json({message: err.message});
@@ -25,9 +26,10 @@ const find = async(req,res)=>{
     const {from,to,price} = req.body
 
     try{
-        const tnxFind = await tnx.find({from:from,to:to}).populate('car');
+        const tnxFind = await tnx.find({from:from}).populate('from');
         console.log(tnxFind);
         res.status(200).json(tnxFind);
+
     }catch(err){
         console.log(err);
         res.status(400).json({message: err.message});
@@ -40,7 +42,7 @@ const findOne = async(req,res)=>{
     const {from,to,price} = req.body
 
     try{
-        const tnxFindOne = await tnx.findOne({from:from,to:to});
+        const tnxFindOne = await tnx.findOne({from:from});
 
         console.log(tnxFindOne);
         res.status(200).json(tnxFindOne);

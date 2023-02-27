@@ -27,7 +27,6 @@ Router.post('/userMany', userController.userinMany);
 Router.post('/userUpdateOne',userController.userUpdateOne);
 Router.post('/userUpdateMany', userController.userUpdateMany);
 
-
 Router.post('/carOne',  carController.inOne);
 Router.post('/carMany', carController.inMany);  
 Router.post('/deleteOne', carController.deleteOne);

@@ -10,14 +10,14 @@ const tnxSchema = mongoose.Schema({
     // },
 
     from : {
-        type: mongoose.Schema.Types.String,
+        type: mongoose.Schema.Types.ObjectId,
         ref : 'user',
         required : true,
     },
 
     to :{
-        type: mongoose.Schema.Types.String,
-        ref : 'user',
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'car',
         required : true,
     },
 

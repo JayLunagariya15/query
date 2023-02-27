@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const user = require('../model/userSchema')
 
 const carSchema = mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref : 'user',
-    },
+    // user: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref : 'user',
+    // },
     
     owner : {
         type : String,
