@@ -37,11 +37,6 @@ const eventSchema = mongoose.Schema({
         enum:['active','inactive']
     },
 
-    tnx:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref : 'tnx',
-    }
-
 },{timestamps: true});
 
 const event = mongoose.model('event', eventSchema);

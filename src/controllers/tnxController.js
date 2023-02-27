@@ -21,12 +21,12 @@ const inTnx = async(req,res)=>{
 };
 
 
-//find
+//find user detail
 const find = async(req,res)=>{
     const {from,to,price} = req.body
 
     try{
-        const tnxFind = await tnx.find({from:from}).populate('from');
+        const tnxFind = await tnx.find({from:from},{from:1,_id:0}).populate('from');
         console.log(tnxFind);
         res.status(200).json(tnxFind);
 
@@ -37,13 +37,12 @@ const find = async(req,res)=>{
 };
 
 
-//findOne
+//findOne with car details 
 const findOne = async(req,res)=>{
     const {from,to,price} = req.body
 
     try{
-        const tnxFindOne = await tnx.findOne({from:from});
-
+        const tnxFindOne = await tnx.findOne({from:from}).populate('to')
         console.log(tnxFindOne);
         res.status(200).json(tnxFindOne);
 

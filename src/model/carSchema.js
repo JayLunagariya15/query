@@ -14,6 +14,7 @@ const carSchema = mongoose.Schema({
 
     model: {
         type: String,
+        unique: true
     },
 
     color : {

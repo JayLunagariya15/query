@@ -37,10 +37,9 @@ const findbyID =  async(req,res)=>{
 const Modify = async(req,res)=>{
     const {created,sold, from, to, price,status} = req.body
     try{
-        const modified = await event.findAndModify(
+        const modified = await event.findOneAndUpdate(
             {from:from,to:to},
-            {created:created,sold,price:price,status:status},
-            {upsert: true},
+            {created:created,sold:sold,price:price,status:status,},
             {new:true}
         );
         console.log(modified);
