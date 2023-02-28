@@ -37,6 +37,7 @@ const find = async(req,res)=>{
 };
 
 
+
 //findOne with car details 
 const findOne = async(req,res)=>{
     const {from,to,price} = req.body
@@ -52,4 +53,19 @@ const findOne = async(req,res)=>{
     };
 };
 
-module.exports ={inTnx,find,findOne}
+
+//sort value in asc and desc 
+const sort = async(req,res)=>{
+    const {from,to,price} = req.body
+
+    try{
+        const carValues = await tnx.find({}).sort({price: -1 }).limit(5);
+        // sort( {field:1}) ==> ascending
+        // sort({field: -1}) ==> descending
+        res.status(200).json(carValues)
+    }catch(err){
+        res.status(400).json({message: err.message});
+    };
+};
+
+module.exports ={inTnx,find,findOne,sort }

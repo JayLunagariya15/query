@@ -12,13 +12,12 @@ const userSchema = mongoose.Schema({
         required:true,
         unique:true
     },
-
+    
     phone: {
         type: Number,
         required:true,
         unique: true
     }
-
 }, {timestamps: true});
 
 const user = mongoose.model('user', userSchema);

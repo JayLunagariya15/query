@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const tnx = require('../model/tnxSchema')
+const tnx = require('../model/tnxSchema');
+const user = require('../model/userSchema');
 
 const eventSchema = mongoose.Schema({
     created :{
@@ -13,19 +14,21 @@ const eventSchema = mongoose.Schema({
     },
 
     from: {
-        type: String,
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'user',
+        required : true,
     },
 
     to :{
-        type: String,
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'user',
+        required : true,
     },
 
     price : {
-
-        type : String,
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'tnx',
+        required : true,
     },
 
     qty: {

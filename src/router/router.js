@@ -36,9 +36,11 @@ Router.post('/deleteMany', carController.deleteMany);
 Router.post('/tnxOne', tnxController.inTnx);
 Router.get('/find',tnxController.find);
 Router.get('/findOne', tnxController.findOne);
+Router.get('/sort', tnxController.sort)
 
 Router.post('/eveOne', eventController.eveInsert);
 Router.get('/findById', eventController.findbyID);
 Router.post('/findAndModify', eventController.Modify);
+Router.get('/findAll',eventController.Pop)
 
 module.exports = Router;

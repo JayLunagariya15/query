@@ -92,11 +92,16 @@ const uniInsert = async(req,res) => {
     const {name , email, phone} = req.body
 
     try{
-        const insert = await user.create({ name:name, email:email, phone:phone});
+        const insert = await user.create({name:name},
+           {
+            $replaceOne :{ email: email, phone:phone}           
+        });
 
         if(email == email ){
-            return res.status(400).json({message: "please use diffrent values"})
-        }
+            return res.status(400).json({message: "please use diffrent email"})
+        }if (phone == phone){
+            return res.status(400).json({message:" please use diffrent Phone"})
+        }else
        return res.status(200).json(insert);
 
     }catch(err){

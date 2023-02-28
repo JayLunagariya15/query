@@ -1,5 +1,6 @@
 const event = require('../model/eventSchema');
-const tnx = require('../model/tnxSchema')
+const tnx = require('../model/tnxSchema');
+const user = require('../model/userSchema')
 
 //insert event
 const eveInsert = async(req,res)=>{
@@ -49,4 +50,37 @@ const Modify = async(req,res)=>{
         res.status(400).json({message: err.message});
     };
 };
-module.exports = {eveInsert,findbyID,Modify}
+
+
+//find 3 Pop
+const Pop = async(req,res)=>{
+    const {created,sold, from, to, price,status} = req.body
+
+    try{
+        const eveFind = await event.find({from:from})
+        .populate('from')
+            .populate('to')
+                .populate('price');
+
+
+
+//method1
+            // .populate('to')
+            //     .populate('price');
+//method2                
+// .populate({path:'from',populate:{path: 'to',populate:{path:'price'}}});
+        
+        console.log(eveFind);
+        res.status(200).json(eveFind);
+
+    }catch(err){
+        console.log(err);
+        res.status(400).json({message: err.message});
+    };
+};
+
+
+
+
+
+module.exports = {eveInsert,findbyID,Modify , Pop }

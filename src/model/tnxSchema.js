@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const car = require('../model/carSchema');
-const user = require('../model/userSchema');
+const user = require('../model/userSchema')
 
 const tnxSchema = mongoose.Schema({
 
@@ -17,7 +17,7 @@ const tnxSchema = mongoose.Schema({
 
     to :{
         type: mongoose.Schema.Types.ObjectId,
-        ref : 'car',
+        ref : 'user',
         required : true,
     },
 
