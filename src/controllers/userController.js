@@ -116,7 +116,7 @@ module.exports = {userinOne,userinMany,userUpdateOne,userUpdateMany, uniInsert}
 
 
 
-// // Register or Creating One User 
+// // // Register or Creating One User 
 // const users = async (req, res) => {
     
 //     const {name,email} =  req.body
@@ -155,7 +155,6 @@ module.exports = {userinOne,userinMany,userUpdateOne,userUpdateMany, uniInsert}
 // }
 
 
-
 // // get all users
 // const gAll = async (req,res) => {
 
@@ -171,21 +170,21 @@ module.exports = {userinOne,userinMany,userUpdateOne,userUpdateMany, uniInsert}
 
 
 // // get one user
-// const getUser = async (req, res) => {
+const getUser = async (req, res) => {
 
-//     const name = req.params.name
+    const name = req.params.name
+    
+    try{
+        const oneUser =  await user.findOne({name: name});
 
-//     try{
-//         const oneUser =  await user.findOne({name: name});
-
-//         if(!oneUser){
-//             return res.status(400).json({message: "There is no user in database with this name"})         
-//         }           
-//         return res.status(200).json(oneUser);
-//     } catch(err){
-//         return res.status(400).json({message: err.message});
-//     }
-// }
+        if(!oneUser){
+            return res.status(400).json({message: "There is no user in database with this name"})         
+        }           
+        return res.status(200).json(oneUser);
+    } catch(err){
+        return res.status(400).json({message: err.message});
+    }
+}
 
 
 
@@ -363,5 +362,3 @@ module.exports = {userinOne,userinMany,userUpdateOne,userUpdateMany, uniInsert}
 // }
 
 // module.exports = {users, fOne, gAll, getUser, listing , setFunction ,matchFunction, pushFunction, equalFunction , lte, gte ,each };
-
-

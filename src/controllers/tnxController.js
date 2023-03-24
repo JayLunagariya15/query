@@ -23,10 +23,10 @@ const inTnx = async(req,res)=>{
 
 //find user detail
 const find = async(req,res)=>{
-    const {from,to,price} = req.body
+    // const {from,to,price} = req.body
 
     try{
-        const tnxFind = await tnx.find({from:from},{from:1,_id:0}).populate('from');
+        const tnxFind = await tnx.find({}).populate('from');
         console.log(tnxFind);
         res.status(200).json(tnxFind);
 
@@ -40,10 +40,10 @@ const find = async(req,res)=>{
 
 //findOne with car details 
 const findOne = async(req,res)=>{
-    const {from,to,price} = req.body
+    const from = req.query.from
 
     try{
-        const tnxFindOne = await tnx.findOne({from:from}).populate('to')
+        const tnxFindOne = await tnx.findOne({from:from});
         console.log(tnxFindOne);
         res.status(200).json(tnxFindOne);
 
@@ -59,7 +59,7 @@ const sort = async(req,res)=>{
     const {from,to,price} = req.body
 
     try{
-        const carValues = await tnx.find({}).sort({price: -1 }).limit(5);
+        const carValues = await tnx.find({}).sort({price: -1 });
         // sort( {field:1}) ==> ascending
         // sort({field: -1}) ==> descending
         res.status(200).json(carValues)
@@ -68,4 +68,4 @@ const sort = async(req,res)=>{
     };
 };
 
-module.exports ={inTnx,find,findOne,sort }
+module.exports ={inTnx,find,findOne, sort}

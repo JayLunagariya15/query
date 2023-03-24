@@ -26,7 +26,7 @@ const findbyID =  async(req,res)=>{
 
     try{
         const byId = await event.findById({_id :_id})
-        console.log(byId);
+        console.log(byId);  
         res.status(200).json(byId);  
     }catch(err){
         console.log(err);
@@ -61,9 +61,6 @@ const Pop = async(req,res)=>{
         .populate('from')
             .populate('to')
                 .populate('price');
-
-
-
 //method1
             // .populate('to')
             //     .populate('price');
@@ -81,6 +78,17 @@ const Pop = async(req,res)=>{
 
 
 
+//match
+const match = async(req,res)=>{
+    const {from,name , price} = req.body
+    try{
+        const mat = await event.find({},{from:1,name:1, _id:0})
+                                    .populate({path:'from', match:{name:name}})
+                                        .populate({path:'price', match:{price:price}})
+        res.status(200).json(mat)
+    }catch(err){
+        res.status(400).json({message: err.message})
+    }
+};
 
-
-module.exports = {eveInsert,findbyID,Modify , Pop }
+module.exports = {eveInsert,findbyID,Modify ,Pop,match}
